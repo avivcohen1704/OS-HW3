@@ -19,7 +19,7 @@ int main(int argc, char* argv[]){
         exit(1);
     }
     int ret_val;
-    int fd = open(argv[1],O_RDWR);
+    int fd = open(argv[1],O_RDONLY);
     if(fd < 0){
         fprintf(stderr, "%s\n", strerror(errno));
 
@@ -39,13 +39,19 @@ int main(int argc, char* argv[]){
         
         exit(1);
     }
-    
-    if(write(STDOUT_FILENO, buffer, ret_val) < ret_val){
+    if(close(fd) < 0){
+        fprintf(stderr, "%s\n", strerror(errno));
+
+        exit(1);
+    }
+    ret_val = write(STDOUT_FILENO, buffer, ret_val) < ret_val;
+
+    if(ret_val < 0){
         fprintf(stderr, "%s\n", strerror(errno));
 
         exit(1);
     }
     
     
-    exit(0);
+    return 0;
 }
