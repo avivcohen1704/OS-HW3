@@ -67,11 +67,7 @@ static int device_open(struct inode* inode, struct file* file) {
     return 0;
 }
 
-//--------------------------------------------------------------------------
 
-static int device_release(struct inode* inode, struct file* file) {
-    return 0;
-}
 
 //--------------------------------------------------------------------------
 
@@ -260,7 +256,6 @@ static struct file_operations Fops = {
     .read = device_read,
     .open = device_open,
     .unlocked_ioctl = device_ioctl,
-    .release = device_release,
 };
 
 // ======================== INIT & CLEANUP ==================================
