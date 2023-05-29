@@ -40,6 +40,7 @@ int main(int argc, char* argv[]){
         exit(1);
     }
 
+    
 
     ret_val = close(fd);
     if (ret_val < 0){
